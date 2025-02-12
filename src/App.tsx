@@ -1,34 +1,41 @@
 import ArtApiData from "./components/artComponent.tsx";
 import styled from "styled-components";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { Art } from "./interface/artData.tsx";
-const ParentDiv=styled.div`
-    width: 80vw;
-    margin: auto;
-    border: 5px darkgoldenrod solid;
+const ParentDiv = styled.div`
+  width: 80vw;
+	margin-left: 10vw;
+  border: 5px darkgoldenrod solid;
 `;
 
-export default function App(){
+export default function App() {
+  const [artData, setArtData] = useState<Art[]>([]);
+  useEffect(() => {
+    const listOfNumbers: number[] = [];
+    for (let i = 0; i < 5; i++) {
+      listOfNumbers.push(Math.floor(Math.random() * 1000));
+    }
 
-    // useState Hook to store Data.
-    const [data, setData] = useState<Art[]>([]);
+    const fetchData = async () => {
+      const fetchedData: Art[] = [];
+      for (let i = 0; i < listOfNumbers.length; i++) {
+        const response = await fetch(
+          `https://collectionapi.metmuseum.org/public/collection/v1/objects/${listOfNumbers[i]}`
+        );
+        const data: Art = await response.json();
+        fetchedData.push(data);
+      }
+      setArtData(fetchedData);
+    };
+    fetchData();
+  }, []);
 
-    // useEffect Hook for error handling and re-rendering.
-    useEffect(() => {
-        async function fetchData(): Promise<void> {
-            const rawData = await fetch("https://collectionapi.metmuseum.org/public/collection/v1/objects/100");
-            const {results} : {results: Art[]} = await rawData.json();
-            setData(results);
-        }
-        fetchData()
-            .then(() => console.log("Data fetched successfully"))
-            .catch((e: Error) => console.log("There was the error: " + e));
-    }, []);
-
-    return(
-        <ParentDiv>
-            <h1>Random Art for the day</h1>
-            <ArtApiData data={data}/>
-        </ParentDiv>
-    )
+  return (
+    <>
+      <ParentDiv>
+        <h1>Random Art for the day</h1>
+        <ArtApiData data={artData} />
+      </ParentDiv>
+    </>
+  );
 }

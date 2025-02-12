@@ -17,17 +17,17 @@ const SingleCharDiv=styled.div`
     border: 3px darkred solid;
     font: italic small-caps bold calc(2px + 1vw) Papyrus, fantasy;
     text-align: center;
+    color: black;
 `;
 
 export default function ArtApiData(props : { data:Art[] } ){
-  console.log(props.data)
   return (
       <AllCharsDiv >
           {
               props.data.map((char: Art) =>
                   <SingleCharDiv key={char.objectID} >
                       <h1>{char.title}</h1>
-                      <img src={char.image} alt={`image of ${char.title}`} />
+                      <img src={char.primaryImage} alt={`${char.title} has no image`} />
                       <p>{char.creditLine}</p>
                   </SingleCharDiv>
               )
