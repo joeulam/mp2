@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { Art } from "../interface/artData";
-const AllCharsDiv=styled.div`
+const ArtAsTableDiv=styled.div`
     display: flex;
     flex-flow: row wrap;    
     justify-content: space-evenly;
     background-color: bisque;
 `;
 
-const SingleCharDiv=styled.div`
+const SingleArtDiv=styled.div`
     display: flex;
     flex-direction: column;   
     justify-content: center;
@@ -15,23 +15,24 @@ const SingleCharDiv=styled.div`
     padding: 2%;
     margin: 1%;
     border: 3px darkred solid;
-    font: italic small-caps bold calc(2px + 1vw) Papyrus, fantasy;
+    font: italic small-caps bold calc(1px + 1vw) Papyrus, fantasy;
     text-align: center;
     color: black;
+    text-wrap: wrap;
 `;
 
 export default function ArtApiData(props : { data:Art[] } ){
   return (
-      <AllCharsDiv >
+      <ArtAsTableDiv >
           {
               props.data.map((char: Art) =>
-                  <SingleCharDiv key={char.objectID} >
+                  <SingleArtDiv key={char.objectID} >
                       <h1>{char.title}</h1>
                       <img src={char.primaryImage} alt={`${char.title} has no image`} />
                       <p>{char.creditLine}</p>
-                  </SingleCharDiv>
+                  </SingleArtDiv>
               )
           }
-      </AllCharsDiv>
+      </ArtAsTableDiv>
   );
 }
