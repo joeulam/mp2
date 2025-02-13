@@ -6,6 +6,7 @@ const ParentDiv = styled.div`
   width: 80vw;
   margin-left: 10vw;
   border: 5px darkgoldenrod solid;
+  border-radius: 15px;
   text-align: center;
 `;
 

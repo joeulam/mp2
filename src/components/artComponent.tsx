@@ -19,6 +19,7 @@ const SingleArtDiv=styled.div`
     text-align: center;
     color: black;
     text-wrap: wrap;
+    border-radius: 15px;
 `;
 
 export default function ArtApiData(props : { data:Art[] } ){
