@@ -16,28 +16,32 @@ const ButtonDiv = styled.button`
 
 export default function App() {
   const [artData, setArtData] = useState<Art[]>([]);
-  async function getArtData(){ 
-    function randomNumber(){
+  async function getArtData() {
+    function randomNumber() {
       return Math.floor(Math.random() * 10000) + 1;
-    };
+    }
     const fetchedData: Art[] = [];
     for (let i = 0; i < 10; i++) {
-      let response = await fetch(
-        `https://collectionapi.metmuseum.org/public/collection/v1/objects/${randomNumber()}` // jquery
-      );
-      let data: Art = await response.json();
-      if (response.status == 404) {
-        while (response.status == 404) {
-          response = await fetch(
-            `https://collectionapi.metmuseum.org/public/collection/v1/objects/${randomNumber()}`
-          );
-          data = await response.json();
+      try {
+        let response = await fetch(
+          `https://collectionapi.metmuseum.org/public/collection/v1/objects/${randomNumber()}` // jquery
+        );
+        let data: Art = await response.json();
+        if (response.status == 404) {
+          while (response.status == 404) {
+            response = await fetch(
+              `https://collectionapi.metmuseum.org/public/collection/v1/objects/${randomNumber()}`
+            );
+            data = await response.json();
+          }
         }
+        fetchedData.push(data);
+      } catch (e) {
+        console.log(e + "Darn");
       }
-      fetchedData.push(data);
+      setArtData(fetchedData);
     }
-    setArtData(fetchedData);
-  };
+  }
   useEffect(() => {
     getArtData();
   }, []);
@@ -47,7 +51,8 @@ export default function App() {
       <ParentDiv>
         <h1>Random Art for the day</h1>
         <ArtApiData data={artData} />
-        <ButtonDiv onClick={() => getArtData()}>I WANT MORE</ButtonDiv> {/* I know its not normal to do () => function but this prevent rerenders and ensure that it only runs when clicked*/}
+        <ButtonDiv onClick={() => getArtData()}>I WANT MORE</ButtonDiv>{" "}
+        {/* () => function prevent rerenders and ensure that it only runs when clicked*/}
       </ParentDiv>
     </>
   );

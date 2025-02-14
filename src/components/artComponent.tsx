@@ -15,7 +15,7 @@ const SingleArtDiv=styled.div`
     padding: 2%;
     margin: 1%;
     border: 3px darkred solid;
-    font: italic small-caps bold calc(1px + 1vw) Papyrus, fantasy;
+    font: italic small-caps bold calc(1px + 1vw) Papyrus;
     text-align: center;
     color: black;
     text-wrap: wrap;
