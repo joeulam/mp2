@@ -29,7 +29,7 @@ const StyledImg = styled.img`
     max-width: 60%;
 `
 
-export default function ArtApiData(props : { data:Art[] } ){
+export default function ArtComponent(props : { data:Art[] } ){
   return (
       <ArtAsTableDiv >
           {

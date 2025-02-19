@@ -1,4 +1,4 @@
-import ArtApiData from "./components/artComponent.tsx";
+import ArtComponent from "./components/artComponent.tsx";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { Art } from "./interface/artData.tsx";
@@ -60,7 +60,7 @@ export default function App() {
     <>
       <ParentDiv>
         <h1>Random Art for the day</h1>
-        <ArtApiData data={artData} />
+        <ArtComponent data={artData} />
         <ButtonDiv onClick={() => getArtData()}>SIRE I WANT MORE</ButtonDiv>
         {/* () => function prevent rerenders and ensure that it only runs when clicked*/}
       </ParentDiv>
