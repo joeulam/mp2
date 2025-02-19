@@ -9,6 +9,7 @@ const ParentDiv = styled.div`
   text-align: center;
   margin: 0 auto;
   padding: 2%;
+  min-height: 100vh;
 `;
 
 const ButtonDiv = styled.button`
