@@ -1,4 +1,3 @@
-
 export interface Art{
   objectID: number;
   title: string;
