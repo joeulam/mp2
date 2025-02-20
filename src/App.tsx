@@ -1,7 +1,7 @@
 import ArtComponent from "./components/ArtComponent.tsx";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { Art } from "./interface/ArtData.tsx";
+import { Art } from "./interface/w.tsx";
 const ParentDiv = styled.div`
   width: 80vw;
   border: 5px solid;
