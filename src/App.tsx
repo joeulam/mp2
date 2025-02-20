@@ -1,4 +1,4 @@
-import ArtComponent from "./components/artComponent.tsx";
+import ArtComponent from "./components/ArtComponent.tsx";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { Art } from "./interface/artData.tsx";
@@ -21,17 +21,23 @@ const ButtonDiv = styled.button`
   font-family: Papyrus, system-ui, Avenir, Helvetica, Arial, sans-serif;
 `;
 
+const StyledInput = styled.input`
+  margin-bottom: 5vh;
+  padding: 5%;
+  border-radius: 5px;
+`
 export default function App() {
   const [artData, setArtData] = useState<Art[]>([]);
-  
-  async function getArtData() {
+  const [numArtWorks, setNumArtworks] = useState(10);
+
+  async function getArtData(num: number) {
     setArtData([])
     function randomNumber() {
       return Math.floor(Math.random() * 10000) + 1;
     }
 
     const fetchedData: Art[] = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < num; i++) {
       try {
         let response = await fetch(
           `https://collectionapi.metmuseum.org/public/collection/v1/objects/${randomNumber()}` // jquery
@@ -53,15 +59,18 @@ export default function App() {
     setArtData(fetchedData);
   }
   useEffect(() => {
-    getArtData();
-  }, []);
+    getArtData(numArtWorks);
+  }, [numArtWorks]);
 
   return (
     <>
       <ParentDiv>
         <h1>Random Art for the day</h1>
+        <h3>Number of cards to show</h3>
+        <StyledInput type="number" placeholder="Number of artworks" value={numArtWorks}
+        onChange={(e) => setNumArtworks(Number(e.target.value))} />
         <ArtComponent data={artData} />
-        <ButtonDiv onClick={() => getArtData()}>SIRE I WANT MORE</ButtonDiv>
+        <ButtonDiv onClick={() => getArtData(numArtWorks)}>SIRE I WANT MORE</ButtonDiv>
         {/* () => function prevent rerenders and ensure that it only runs when clicked*/}
       </ParentDiv>
     </>
