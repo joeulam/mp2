@@ -19,6 +19,7 @@ const ButtonDiv = styled.button`
   background-color: #e6d3a1;
   border-radius: 5px;
   font-family: Papyrus, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  padding: 2%
 `;
 
 const StyledInput = styled.input`
