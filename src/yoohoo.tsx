@@ -1,4 +1,4 @@
-import ArtComponent from "./components/ArtComponent.tsx";
+import ArtComponent from "./components/dang.tsx";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { Art } from "./interface/ArtData.tsx";
