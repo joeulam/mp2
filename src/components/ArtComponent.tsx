@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Art } from "../interface/ArtData";
-
 const ArtAsTableDiv=styled.div`
     display: flex;
     flex-flow: row wrap;    
