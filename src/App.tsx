@@ -24,7 +24,7 @@ const ButtonDiv = styled.button`
 
 const StyledInput = styled.input`
   margin-bottom: 5vh;
-  padding: 5%;
+  padding: 2%;
   border-radius: 5px;
 `
 export default function App() {
@@ -66,7 +66,7 @@ export default function App() {
   return (
     <>
       <ParentDiv>
-        <h1>Random Art for the day</h1>
+        <h1>Random Art</h1>
         <h3>Number of cards to show</h3>
         <StyledInput type="number" placeholder="Number of artworks" value={numArtWorks}
         onChange={(e) => setNumArtworks(Number(e.target.value))} />

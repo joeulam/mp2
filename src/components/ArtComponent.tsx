@@ -37,6 +37,7 @@ export default function ArtComponent(props : { data:Art[] } ){
                   <SingleArtDiv key={char.objectID} >
                       <h1>{char.title}</h1>
                       <StyledImg src={char.primaryImage} alt={`${char.title} has no image`} />
+                      <h3>Created in {char.objectDate}</h3>
                       <p>{char.creditLine}</p>
                   </SingleArtDiv>
               )
